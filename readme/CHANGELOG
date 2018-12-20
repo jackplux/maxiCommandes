@@ -1,0 +1,96 @@
+TODO OR NOT :
+Config+ : SURFER WOULD EMAIL COPY ::: Max link in feed (is number of page of datatable)
++surfer would email copy
++Extract joint files for see or download this (extraire le pièces jointe) (admin)
++datatable page (& per page selector) session cookie
++ if #timeStamp from rss go to good page (admin)
+https://duckduckgo.com/html/?q=vanilla%20datatable%20%22goto%22%20page&norw=1
+https://codepen.io/Mobius1/pen/VadmKb
+http://www.craiglotter.co.za/2012/05/28/how-to-refresh-a-datatable-without-losing-your-current-page-or-ordering/ (jq)
++Anonyme : ne pas envoyer l'email de conf d'envoi lors de expCheck (sauf a sa demande + (copy)
+touch in index (front?&back office) (cron if never send opt (front office)) (if view admin touch(filecron) (if > to 1 month send email with unsended email or résumé)
++ADMIN : SWITCH ALL EML (? pour la sélection?)
++ADMIN hint : in / out /all
+qcm other placeholder dynamic (multilingue) conf & public form
+PLX_CORE (5.2?)
+R&D:multiple forms
+:::config : $plxPlugin->saveParams();//→ð if(plxUtils::write($xml,$this->plug['parameters.xml'])) : $this->plug['parameters.xml']
+
+
+## v1.2.0 28/10/2018 ##
+[+] Compatibilité accrue avec les Anciens PluXml (5.2+ et plus)
+[+] Questions perso : possible de changer de place : au début, après pré-prog / QCM / Message
+[+] QCM & Questions perso : possibilité d'y inclure des codes (attributs HTML, JS) + aide MDN
+[+] Questions perso types possibles : button, checkbox, color, date, datetime, datetime-local, email, file, hidden, image, month, number, password, radio, range, reset, search, submit, tel, text, textarea, time, url, week
+[+] QCM types possibles : radio,checkbox,select(-one)
+[+] Aides augmentées
+[+] form.inc.php + 1 exemple d'envoi avec piece jointe (questions perso détournées)
+[+] Admin : Liens "voir" le formulaire (aide, config & admin) multilingue
+[+] Afficher/Masquer tout (questions perso & qcm)
+[+] Hook : AdminAuthPrepend : Only if logon attempt ::: créer $_SESSION['clefmaxiContact'] avec $plxAdmin->aConf['clef'] : multisite sur même host ;)
+[+] Formulaire form.maxiContact : Menu et liens de config si gestionnaires&+ connectés
+::: *Lien Icones .linkmcc, avec #hash : perso, main, main2 & qcm : Administration & Configuration du plugin
+[+] Formulaire form.maxiContact (js) : .deldrm(.full) radio,checkbox,select(-one) multi type check()
+::: js check() augmenté pour le multi QCM & leurs types
+[+] ScrollToTop ⇧ du forum officiel (tips.inc.php)
+[+] Config : effacer (ou non) le dossier des courriels sauvés lorsque le plugin est désactivé.
+[+] Config : forcer malgré les trads absentes : caché si inutile (trad ok et !plxMyMultilingue)
+[+] tabs.js : v2 Dynamic #hash helper (ohmyjs)
+::: & dans config form onSubmit="tabPoster();"
+	function tabPoster(){/* Dynamic tabs onSubmit() helper */
+		window.location.hash = document.getElementById('onglets').getAttribute('data-current');/* tablive with no cookie or session : Fix ScrollToTop */
+	}
+[+] Config toggles caché si noscript (questions & qcms) .needscript hide
+[+] Toggles pour toutes les questions personnalisées et pour chaques QCM
+[+] Update sys : importe l'ancien qcm (xml config) + Fix
+    #IF PLUGIN CONFIG ARE UPDATED
+    ##IN PUBLIC MODE( ! ) Fatal error: Class 'plxMsg' not found in core/lib/class.plx.plugins.php
+    ##IN ADMIN AUTH ;) ::: core/admin/auth.php?p=core/admin/plugin.php?p=maxiContact
+    http://localhost/pluxml-master.dev/core/admin/auth.php?p=/pluxml-master.dev/core/admin/plugin.php?p=maxiContact
+    ( ! ) Notice: Use of undefined constant L_SAVE_SUCCESSFUL - assumed 'L_SAVE_SUCCESSFUL' in core/lib/class.plx.plugins.php
+    Fix: onUpdate (del old params if no old qcm
+[+] comment --> qcm (radio,checkbox,select(-one) , $var['qcm'.$c] :: $comment([$c]), radio,checkbox,select(-one) )
+::: $comment_obligatoire([$c]) --> $var['qcm_obligatoire'.$c] :: 
+Fix : si zéro perso $fl unexist for qcm :algo: $fl = !!$var['force_lang']; remonté
+Fix : Config : removed old param + old lang var
+[-] $plxPlugin->setParam('label', $_POST['label'], 'numeric');
+[-] $plxPlugin->setParam('placeholder', $_POST['placeholder'], 'numeric');
+[-] Hooks supprimés : #plxFeedDemarrageBegin (déja inutilisé), plxShowStaticContentBegin & plxShowStaticContent
+
+
+## v1.1.0 06/10/2018 ##
+[+] Config : param (dés)activer le "autre" du qcm
+[+] Config : param "Url de redirection, si succès"
+[+] Config : param "inclure en php, au lieu de rediriger" (les paramètres POSTÉS sont accessibles)
+[+] Fichier d'exemple à inclure (form.inc.php)
+[+] Petit Nettoyage de code
+
+
+## v1.0.1 05/10/2018 ##
+[+] ThemeEndHead() affichage du link css + classique
+[+] Compatible avec le plugin myContact (Fix capcha) (Merci @jol5926 pour ses essais (https://forum.pluxml.org/viewtopic.php?pid=57632#p57632))
+[+] Aides : Petites retouches
+Fix plxMotorPreChauffageBegin () : mauvaise condition de choix.
+::: avec stripos($this->get,'<?php echo $this->getParam('url')?>')!==false il pouvait se tromper.
+::: Si par exemple l'url était "contact" et qu'un article (ou autre) avait dans son url le "mot" contact, (ex: mon-article-sur-les-formulaires-de-contact) au lieu d'afficher l'article, affichait le formulaire MaxiContact.
+::: Remplacé par un bon vieux equal ::: $this->get === '<?php echo $this->getParam('url')?>'
+Fix Intitulé du QCM : Notice: Undefined index: qrm_title_fr in maxiContact/config.php on line 462 (si Nombre de réponse personnalisée = zéro)
+
+## v1.0.0 23/09/2018 ##
++ Petites retouches css
++ 1 sondage multilingue (option)
+Fix ADMIN Compatibilité : goto is added in php 5.3)
+Fix badge js
+
+__UNPUBLISHEDS__
+rc2
++jsAdminTable (pre to table)
++ADMIN Répondre à @
+
+rc1
+fix managers unaccess in config & HELP
+fix add missing help linkicon in config?
+fix miss lang
++   object_page
++   form contact (size -1) and improve
+admin ::: WIT : RESEND THIS TO ME ::: WIT js sendme(eml) button :: switch eml

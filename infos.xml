@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document>
+	<title><![CDATA[MaxiContact]]></title>
+	<author><![CDATA[Thomas Ingles]]></author>
+	<version>1.2.0</version>
+	<date>28/10/2018</date>
+	<site>http://sudwebdesign.free.fr</site>
+	<description><![CDATA[Gérer et répondre aux courriels.
+Page de contact multiservices compatible free.fr et
+flux de syndication privés des messages reçus.
+]]></description>
+	<description_en><![CDATA[Administrate and respond to email.
+Multiservice contact page, free.fr compatible and
+privates feed of messages.
+]]></description_en>
+	<requirements></requirements>
+	<scope></scope>
+</document>
